@@ -16,3 +16,4 @@
 - npm install grunt-contrib-clean --save
 - npm install grunt-contrib-uglify --save
 - npm install grunt-open --save-dev
+- npm install grunt-contrib-coffee --save
