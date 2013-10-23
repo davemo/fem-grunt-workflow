@@ -1,0 +1,3 @@
+- pre-existing static assets
+- npm init
+- touch Gruntfile.js
