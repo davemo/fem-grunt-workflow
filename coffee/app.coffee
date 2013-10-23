@@ -1,4 +1,4 @@
-angular.module('tbs.BattlePlannerNG', []).run(['$rootScope', ($rootScope) ->
+angular.module('tbs.BattlePlannerNG', ['ngRoute']).run(['$rootScope', ($rootScope) ->
   $rootScope.log = (things...) ->
     console.log(things)
 

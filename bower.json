@@ -1,0 +1,26 @@
+{
+  "name": "my-app",
+  "version": "0.0.0",
+  "homepage": "https://github.com/davemo/fem-grunt-workflow",
+  "authors": [
+    "David Mosher <davidmosher@gmail.com>"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "bower_modules",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "1.2.0-rc.3",
+    "angular-route": "1.2.0-rc.3",
+    "base64js": "~1.0.0",
+    "jquery": "~2.0.3",
+    "underscore": "~1.5.2",
+    "extend.js": "https://github.com/searls/extend.js/releases/download/0.1.0/extend.js"
+  }
+}

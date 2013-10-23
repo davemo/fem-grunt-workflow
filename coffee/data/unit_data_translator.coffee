@@ -54,10 +54,10 @@ def 'tbs.data.UnitDataTranslator',
     _(units).each (u) ->
       stats = _(u.stats).map (s) -> [STAT_NAME_FULL_TO_ENCODED[s.name],s.current,s.min,s.max]
       output.push([UNIT_NAME_FULL_TO_ENCODED[u.name],u.rank,u.allocated_stat_points,u.max_stat_points,stats])
-    Base64  .encode(JSON.stringify(output))
+    base64.encode(JSON.stringify(output))
 
   deserialize: (encoded) ->
-    units = JSON.parse(Base64 .decode(encoded))
+    units = JSON.parse(base64.decode(encoded))
     models = []
     _(units).each (unit) ->
       if unit[4] is undefined
