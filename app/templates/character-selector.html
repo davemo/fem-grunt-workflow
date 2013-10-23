@@ -1,0 +1,15 @@
+<div id="character-selector" ng-cloak ng-hide="editing">
+  <div class="wrapper">
+    <div id="unit-groupings">
+      <div class="unit-type" ng-repeat="(type, group) in unitGroupings">
+        <div class="title">{{ type }}</div>
+        <ul class="classes">
+          <li class="character {{ unit.name }}" ng-repeat="unit in group" ng-click="assignUnitToNextAvailableLoadoutSlot(unit)">
+            <div class="title">{{ unit.name }}</div>
+            <div class="portrait"></div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
