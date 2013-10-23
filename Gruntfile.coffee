@@ -4,6 +4,14 @@ module.exports = (grunt) ->
   # initializing task configuration
   grunt.initConfig
 
+    # meta data
+    pkg: grunt.file.readJSON("package.json")
+    banner: "/*! <%= pkg.title || pkg.name %> - v<%= pkg.version %> - " +
+      "<%= grunt.template.today(\"yyyy-mm-dd\") %>\n" +
+      "<%= pkg.homepage ? \"* \" + pkg.homepage + \"\\n\" : \"\" %>" +
+      "* Copyright (c) <%= grunt.template.today(\"yyyy\") %> <%= pkg.author.name %>;" +
+      " Licensed <%= _.pluck(pkg.licenses, \"type\").join(\", \") %> */\n"
+
     # files that our tasks will use
     files:
       html:
@@ -78,6 +86,14 @@ module.exports = (grunt) ->
       web:
         port: 8000
 
+    uglify:
+      options:
+        banner: "<%= banner %>"
+
+      dist:
+        src: "<%= concat.js.dest %>" # input from the concat process
+        dest: "dist/js/app.min.js"
+
     clean:
       workspaces: ["dist", "generated"]
 
@@ -90,7 +106,8 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks "grunt-contrib-less"
   grunt.loadNpmTasks "grunt-contrib-copy"
   grunt.loadNpmTasks "grunt-contrib-clean"
+  grunt.loadNpmTasks "grunt-contrib-uglify"
 
   # creating workflows
   grunt.registerTask "default", ["less:dev", "concat", "copy", "server", "watch"]
-  grunt.registerTask "build", ["less:dist", "concat", "copy"]
+  grunt.registerTask "build", ["clean", "less:dist", "concat", "uglify", "copy"]
