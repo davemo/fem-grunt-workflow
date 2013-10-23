@@ -5,4 +5,4 @@
 - npm install grunt
 - mkdir tasks
 - npm install grunt-contrib-concat --save
--
+- npm install grunt-contrib-watch  --save
