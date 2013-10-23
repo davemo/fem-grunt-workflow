@@ -46,3 +46,9 @@
 
 - npm install grunt-angular-templates --save
 
+# Optimizing for Developer Happiness
+
+## grunt-concat-sourcemap
+
+- npm install grunt-concat-sourcemap --save
+

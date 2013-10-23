@@ -55,7 +55,9 @@ module.exports = (grunt) ->
         dest: '<%= files.coffee.dest %>'
         ext: '.js'
 
-    concat:
+    concat_sourcemap:
+      options:
+        sourcesContent: true
       app:
         src: [
           "<%= files.js.vendor %>"
@@ -75,11 +77,11 @@ module.exports = (grunt) ->
 
       js:
         files: ["<%= files.js.vendor %>"]
-        tasks: ["concat"]
+        tasks: ["concat_sourcemap"]
 
       coffee:
         files: ["coffee/**/*.coffee"]
-        tasks: ["coffee", "concat"]
+        tasks: ["coffee", "concat_sourcemap"]
 
       less:
         files: ["<%= files.less.src %>"]
@@ -127,7 +129,9 @@ module.exports = (grunt) ->
         banner: "<%= banner %>"
 
       dist:
-        src: "<%= concat.app.dest %>" # input from the concat process
+        sourceMapIn: "dist/js/app.min.js.map"
+        sourceMap:   "dist/js/app.min.js.map"
+        src: "<%= concat_sourcemap.app.dest %>" # input from the concat_sourcemap process
         dest: "dist/js/app.min.js"
 
     clean:
@@ -141,6 +145,6 @@ module.exports = (grunt) ->
   require('matchdep').filterAll('grunt-*').forEach(grunt.loadNpmTasks)
 
   # creating workflows
-  grunt.registerTask "default", ["ngtemplates", "less:dev", "coffee", "concat", "copy", "server", "open", "watch"]
-  grunt.registerTask "build", ["clean", "ngtemplates", "less:dist", "coffee", "concat", "uglify", "copy"]
+  grunt.registerTask "default", ["ngtemplates", "less:dev", "coffee", "concat_sourcemap", "copy", "server", "open", "watch"]
+  grunt.registerTask "build", ["clean", "ngtemplates", "less:dist", "coffee", "concat_sourcemap", "uglify", "copy"]
   grunt.registerTask "prodsim", ["build", "server", "open", "watch"]
