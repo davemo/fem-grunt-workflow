@@ -1,0 +1,27 @@
+<div id="stat-editor" ng-cloak ng-show="editing">
+  <div class="wrapper">
+    <div class="title-and-controls">
+      <div class="title">{{ unit.name }} - (rank <span class="rank">{{ unit.rank }}</span>)</div>
+      <div class="controls">
+        <span class="done" ng-click="doneEditing()">Done Editing</span>
+        <span class="reset">Reset to Minimums</span>
+        <span class="total">
+          <span class="allocated">{{ unit.allocated_stat_points }}</span>/<span class="max">{{ unit.max_stat_points }}</span>
+        </span>
+        <span id="rank-changer" class="rank{{ unit.rank }}">
+          <span class="ui-title">Rank</span>
+          <span class="set-rank-1 change-rank">1</span><span class="set-rank-2 change-rank">2</span><span class="set-rank-3 change-rank">3</span>
+        </span>
+      </div>
+    </div>
+
+    <div class="portrait {{ unit.name }}"></div>
+
+    <ul class="stats">
+      <li class="{{ stat.name }}" ng-repeat="stat in unit.stats" ng-controller="StatChange">
+        <span class="current">{{ stat.current }}</span>/<span class="max">{{ stat.max }}</span>
+        <span class="icon" disable-context-menu ng-mousedown="increaseOrDecrease(unit, stat, $event)"></span>
+      </li>
+    </ul>
+  </div>
+</div>
