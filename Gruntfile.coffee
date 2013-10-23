@@ -82,7 +82,7 @@ module.exports = (grunt) ->
           "dist/index.html"      : "<%= files.html.src %>"
 
     server:
-      base: "generated"
+      base: "#{process.env.SERVER_BASE || 'generated'}"
       web:
         port: 8000
 
@@ -111,3 +111,4 @@ module.exports = (grunt) ->
   # creating workflows
   grunt.registerTask "default", ["less:dev", "concat", "copy", "server", "open", "watch"]
   grunt.registerTask "build", ["clean", "less:dist", "concat", "uglify", "copy"]
+  grunt.registerTask "prodsim", ["build", "server", "open", "watch"]
