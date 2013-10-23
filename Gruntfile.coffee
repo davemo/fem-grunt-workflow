@@ -49,6 +49,11 @@ module.exports = (grunt) ->
         src: "<%= files.less.src %>"
         dest: "generated/css/style.css"
 
+    copy:
+      html:
+        src: "index.html"
+        dest: "generated/index.html"
+
   # loading local tasks
   grunt.loadTasks "tasks"
 
@@ -56,6 +61,7 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks "grunt-contrib-concat"
   grunt.loadNpmTasks "grunt-contrib-watch"
   grunt.loadNpmTasks "grunt-contrib-less"
+  grunt.loadNpmTasks "grunt-contrib-copy"
 
   # creating workflows
-  grunt.registerTask "default", ["less", "concat", "watch"]
+  grunt.registerTask "default", ["less", "concat", "copy", "watch"]
