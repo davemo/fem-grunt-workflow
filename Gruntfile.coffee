@@ -86,6 +86,10 @@ module.exports = (grunt) ->
       web:
         port: 8000
 
+    open:
+      dev:
+        path: "http://localhost:<%= server.web.port %>"
+
     uglify:
       options:
         banner: "<%= banner %>"
@@ -107,7 +111,8 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks "grunt-contrib-copy"
   grunt.loadNpmTasks "grunt-contrib-clean"
   grunt.loadNpmTasks "grunt-contrib-uglify"
+  grunt.loadNpmTasks "grunt-open"
 
   # creating workflows
-  grunt.registerTask "default", ["less:dev", "concat", "copy", "server", "watch"]
+  grunt.registerTask "default", ["less:dev", "concat", "copy", "server", "open", "watch"]
   grunt.registerTask "build", ["clean", "less:dist", "concat", "uglify", "copy"]
