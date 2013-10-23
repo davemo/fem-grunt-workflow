@@ -8,3 +8,4 @@
 - npm install grunt-contrib-watch  --save
 - add to package.json "grunt-contrib-less": "git://github.com/davemo/grunt-contrib-less.git"
 - npm install
+- npm install grunt-contrib-copy --save
