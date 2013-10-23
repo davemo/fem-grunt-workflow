@@ -52,3 +52,19 @@
 
 - npm install grunt-concat-sourcemap --save
 
+# Alternative Frameworks & Dependency Management Strategies
+
+## Backbone, precompiling handlebars
+
+- npm install grunt-contrib-handlebars --save
+
+- rm -rf bower_modules
+- bower install https://raw.github.com/testdouble/backbone-fixins/master/dist/backbone-fixins.js --save
+- bower install backbone.stickit#0.6.2 --save
+- bower install backbone#0.9.10 --save
+- bower install underscore.string#2.3.0 --save
+- bower install handlebars#1.0.0 --save
+- bower install underscore#1.4.3 --save
+- bower install jquery#1.8.2 --save
+- bower install https://github.com/searls/extend.js/releases/download/0.1.0/extend.js --save
+- bower install base64js --save
