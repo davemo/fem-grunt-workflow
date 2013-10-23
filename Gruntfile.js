@@ -11,19 +11,13 @@ module.exports = function(grunt) {
           "vendor/js/underscore.js",
           "vendor/js/base64.js",
           "vendor/js/extend.js",
-          "js/config/extend_ext.js",
+          "js/config/**/*.js",
           "js/app.js",
-          "js/data/unit_data_translator.js",
-          "js/data/unit_data.js",
-          "js/directives/disable_context_menu.js",
-          "js/directives/show_if_unit_has_stats_when_hovered.js",
-          "js/controllers/character_selector_controller.js",
-          "js/controllers/loadout_controller.js",
-          "js/controllers/stat_change_controller.js",
-          "js/controllers/stat_editor_controller.js",
-          "js/services/app_state_service.js",
-          "js/services/unit_service.js",
-          "js/router.js"
+          "js/data/**/*.js",
+          "js/directives/**/*.js",
+          "js/controllers/**/*.js",
+          "js/services/**/*.js",
+          "js/**/*.js"
         ]
       }
     }
