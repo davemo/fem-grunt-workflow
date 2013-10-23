@@ -13,3 +13,4 @@
 - touch tasks/server.js
 - install the chrome live-reload extension
 -- https://chrome.google.com/webstore/detail/livereload/jnihajbhpnppcggbcgedagnkighmdlei?hl=en
+- npm install grunt-contrib-clean --save
