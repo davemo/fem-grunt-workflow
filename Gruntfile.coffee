@@ -3,9 +3,13 @@ module.exports = (grunt) ->
   # task configurations
   # initializing task configuration
   grunt.initConfig
-    concat:
-      app:
-        dest: "generated/js/app.min.js"
+
+    # files that our tasks will use
+    files:
+      less:
+        src: ["css/style.less"]
+
+      js:
         src: [
           "vendor/js/jquery.js"
           "vendor/js/angular.js"
@@ -21,13 +25,19 @@ module.exports = (grunt) ->
           "js/**/*.js"
         ]
 
+    # task configuration targets
+    concat:
+      js:
+        src: "<%= files.js.src %>"
+        dest: "generated/js/app.min.js"
+
     watch:
       js:
-        files: ["<%= concat.app.src %>"]
+        files: ["<%= files.js.src %>"]
         tasks: ["concat"]
 
       less:
-        files: ["<%= less.dev.src %>"]
+        files: ["<%= files.less.src %>"]
         tasks: ["less:dev"]
 
     less:
@@ -36,7 +46,7 @@ module.exports = (grunt) ->
         ieCompat: false
 
       dev:
-        src: "css/style.less"
+        src: "<%= files.less.src %>"
         dest: "generated/css/style.css"
 
   # loading local tasks
