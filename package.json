@@ -7,5 +7,9 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "david mosher",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "grunt-contrib-concat": "~0.3.0",
+    "grunt": "~0.4.1"
+  }
 }
