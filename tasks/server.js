@@ -6,6 +6,7 @@ module.exports = function(grunt) {
     webRoot = grunt.config.get("server.base") || "dist";
 
     app = express();
+    app.use(express.compress());
     app.use(express.static("" + (process.cwd()) + "/" + webRoot));
     app.use(express.errorHandler());
     app.listen(webPort);
