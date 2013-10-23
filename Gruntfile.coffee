@@ -69,6 +69,9 @@ module.exports = (grunt) ->
       web:
         port: 8000
 
+    clean:
+      workspaces: ["dist", "generated"]
+
   # loading local tasks
   grunt.loadTasks "tasks"
 
@@ -77,6 +80,7 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks "grunt-contrib-watch"
   grunt.loadNpmTasks "grunt-contrib-less"
   grunt.loadNpmTasks "grunt-contrib-copy"
+  grunt.loadNpmTasks "grunt-contrib-clean"
 
   # creating workflows
   grunt.registerTask "default", ["less", "concat", "copy", "server", "watch"]
