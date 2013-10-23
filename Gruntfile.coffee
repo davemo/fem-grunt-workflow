@@ -42,6 +42,10 @@ module.exports = (grunt) ->
           "generated/compiled-coffee/**/*.js"
         ]
 
+      templates:
+        src: "app/templates/**/*.html"
+        compiled: "generated/template-cache.js"
+
     # task configuration
     coffee:
       compile:
@@ -53,7 +57,11 @@ module.exports = (grunt) ->
 
     concat:
       app:
-        src: ["<%= files.js.vendor %>", "<%= files.coffee.compiled %>"]
+        src: [
+          "<%= files.js.vendor %>"
+          "<%= files.coffee.compiled %>"
+          "<%= files.templates.compiled %>"
+        ]
         dest: "generated/js/app.min.js"
 
     watch:
@@ -92,6 +100,13 @@ module.exports = (grunt) ->
         src: "<%= files.less.src %>"
         dest: "dist/css/style.css"
 
+    ngtemplates:
+      "tbs.BattlePlannerNG":
+        options:
+          base: "app/templates"
+        src:  "<%= files.templates.src %>"
+        dest: "<%= files.templates.compiled %>"
+
     copy:
       html:
         files:
@@ -126,6 +141,6 @@ module.exports = (grunt) ->
   require('matchdep').filterAll('grunt-*').forEach(grunt.loadNpmTasks)
 
   # creating workflows
-  grunt.registerTask "default", ["less:dev", "coffee", "concat", "copy", "server", "open", "watch"]
-  grunt.registerTask "build", ["clean", "less:dist", "coffee", "concat", "uglify", "copy"]
+  grunt.registerTask "default", ["ngtemplates", "less:dev", "coffee", "concat", "copy", "server", "open", "watch"]
+  grunt.registerTask "build", ["clean", "ngtemplates", "less:dist", "coffee", "concat", "uglify", "copy"]
   grunt.registerTask "prodsim", ["build", "server", "open", "watch"]
