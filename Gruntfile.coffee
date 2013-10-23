@@ -26,12 +26,22 @@ module.exports = (grunt) ->
         files: ["<%= concat.app.src %>"]
         tasks: ["concat"]
 
+    less:
+      options:
+        paths: ["app/css"]
+        ieCompat: false
+
+      dev:
+        files:
+          "generated/css/style.css": "css/style.less"
+
   # loading local tasks
   grunt.loadTasks "tasks"
 
   # loading external tasks (aka: plugins)
   grunt.loadNpmTasks "grunt-contrib-concat"
   grunt.loadNpmTasks "grunt-contrib-watch"
+  grunt.loadNpmTasks "grunt-contrib-less"
 
   # creating workflows
-  grunt.registerTask "default", ["concat", "watch"]
+  grunt.registerTask "default", ["less", "concat", "watch"]
