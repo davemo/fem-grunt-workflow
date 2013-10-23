@@ -15,10 +15,10 @@ module.exports = (grunt) ->
     # files that our tasks will use
     files:
       html:
-        src: "index.html"
+        src: "app/index.html"
 
       less:
-        src: ["css/style.less"]
+        src: ["app/css/style.less"]
 
       js:
         vendor: [
@@ -46,7 +46,7 @@ module.exports = (grunt) ->
     coffee:
       compile:
         expand: true
-        cwd: 'coffee'
+        cwd: 'app/coffee'
         src: '**/*.coffee'
         dest: '<%= files.coffee.dest %>'
         ext: '.js'
