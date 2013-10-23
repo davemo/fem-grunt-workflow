@@ -1,0 +1,471 @@
+@import "_mixins.less";
+
+.black-text-outline () {
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+
+html {
+  font-family: 'Skranji', cursive;
+  color: #9caab2;
+}
+
+html, body, h1, h2, h3, ul, li {
+  margin: 0;
+  padding: 0;
+}
+
+ul, li {
+  list-style-type: none;
+}
+
+body {
+  background: black;
+}
+
+// Initial State
+
+.wrapper {
+  width: 960px;
+  margin: 0 auto;
+}
+
+#header {
+  height: 100px;
+  background-color: #1d1f32;
+  #gradient > .vertical(#1d1f32, #494e6a);
+  .box-shadow(0px 5px 10px 0px rgba(73, 78, 106, 0.75));
+  position: relative;
+  h1 {
+    padding-top: 25px;
+    font-size: 2.5em;
+    text-align: center;
+    color: #9abaf0;
+    .black-text-outline();
+  }
+}
+
+.allocated-max-stats {
+  padding: 6px;
+  border-top-left-radius: 6px;
+  border: 2px solid black;
+  background-color: rgba(0,0,0, 0.75);
+  color: orange;
+  line-height: 1em;
+  border-right: none;
+  border-bottom: none;
+  bottom: 38px;
+  right: 8px;
+  position: absolute;
+  z-index: 4;
+}
+
+.stats-overlay {
+  padding: 3px;
+  border-radius: 6px;
+  overflow: hidden;
+  background: black;
+  margin: 0 auto;
+  margin-top: -5px;
+  width: 129px;
+  position: relative;
+  z-index: 0;
+  li {
+    float: left;
+    display: block;
+    width: 25px;
+    height: 22px;
+    color: white;
+    text-align: center;
+    margin-right: 1px;
+    &:last-child {
+      margin-right: 0px;
+    };
+    border-radius: 2px;
+  }
+
+  .armor {
+    background-color: #4873b2;
+  }
+  .strength {
+    background-color: #c4453b;
+  }
+  .willpower {
+    background-color: #c5a500;
+  }
+  .exertion {
+    background-color: #458e48;
+  }
+  .break {
+    background-color: #313131;
+  }
+}
+
+#loadout {
+  padding: 20px 0;
+  #gradient > .vertical(#121a1d, #25404c);
+  .box-shadow(0px 10px 20px 0px rgba(0,0,0,0.75));
+  .character {
+    padding-bottom: 30px;
+    position: relative;
+    .move-left, .move-right {
+      position: absolute;
+      display: none;
+      width: 34px;
+      height: 34px;
+      top: 88px;
+      background-size: 100%;
+      z-index: 5;
+    }
+    .move-left {
+      background-image: data-uri("../img/icon/move-left.png");
+      left: -8px;
+    }
+    .move-right {
+      background-image: data-uri("../img/icon/move-right.png");
+      right: -8px;
+    }
+    .arrow {
+      display: none;
+      position: absolute;
+      bottom: -55px;
+      left: 51px;
+      color: #5f4d4d;
+      font-size: 3em;
+    }
+    .help-text {
+      text-align: center;
+      position: absolute;
+      top: 37%;
+      left: 11%;
+      width: 80%;
+    }
+    .remove {
+      display: none;
+      width: 25px;
+      height: 25px;
+      border-radius: 13px;
+      #gradient > .radial(#b62f12, #8f250d);
+      .box-shadow(0px 10px 20px 0px rgba(0,0,0,0.75));
+      border: 2px solid #7c8990;
+      color: white;
+      position: absolute;
+      z-index: 2;
+      top: 26px;
+      right: 0;
+      text-align: center;
+      line-height: 0.75em;
+      font-size: 2em;
+    }
+    &.choosing .arrow, &.edit-stats .arrow {
+      display: block;
+    }
+  }
+
+  .character.choosing {
+    .arrow {
+      display: block;
+    }
+  }
+}
+
+#character-selector, #loadout, .classes {
+  overflow: hidden;
+}
+
+#character-selector {
+  padding: 20px 0px;
+  #gradient > .vertical(#5f4d4d, #8b6049);
+  .character {
+    width: 125px;
+    margin-right: 35px;
+    &:last-child {
+      margin-right: 0px;
+    };
+    .title {
+      width: 125px;
+    }
+    .portrait {
+      width: 125px;
+      height: 125px;
+      background-size: 125px;
+    }
+  }
+  .unit-type {
+    float: left;
+    margin-right: 25px;
+    &.archers, &.shieldbangers {
+      margin-right: 0px;
+    }
+    > .title {
+      border-bottom: 1px solid #999;
+      line-height: 60px;
+      margin-bottom: 10px;
+      font-size: 3em;
+    }
+  }
+}
+
+.build {
+  float: right;
+  .version {
+    color: orange;
+  }
+}
+
+#stat-editor {
+  #gradient > .vertical(#5f4d4d, #8b6049);
+  overflow: hidden;
+  padding: 20px 0;
+  .title-and-controls {
+    position: relative;
+  }
+  .controls {
+    position: absolute;
+    top: 0;
+    right: 0;
+    .reset, .total, .done, #rank-changer {
+      border: 1px solid orange;
+      display: block;
+      float: right;
+      margin-left: 10px;
+      padding: 10px;
+      color: white;
+    }
+    #rank-changer {
+      padding: 0 10px;
+      padding-right: 0px;
+      .ui-title {
+        padding-right: 5px;
+      }
+      &.rank1 .set-rank-1,
+      &.rank2 .set-rank-2,
+      &.rank3 .set-rank-3 {
+        background-color: rgba(222, 157, 82, 0.35);
+      }
+    }
+    .change-rank {
+      display: inline-block;
+      border-left: 1px solid orange;
+      padding: 10px;
+      color: white;
+    }
+    .reset:hover, .done:hover, .change-rank:hover {
+      cursor: pointer;
+      background-color: rgba(222, 157, 82, 0.35);
+    }
+
+
+  }
+  .title {
+    border-bottom: 1px solid #999;
+    line-height: 60px;
+    margin-bottom: 10px;
+    font-size: 2.5em;
+  }
+  .portrait, .stats {
+    float: left;
+  }
+  .stats {
+    margin-top: 30px;
+    width: 775px;
+    li {
+      text-align: right;
+      padding-right: 175px;
+      margin-bottom: 25px;
+      font-size: 2.5em;
+      border-width: 1px;
+      border-style: solid;
+      color: #ea9d2e;
+      position: relative;
+      .black-text-outline();
+      .current {
+        color: #ffdba6;
+      }
+      .max {
+        color: #ea9d2e;
+      }
+      .icon {
+        display: block;
+        position: absolute;
+        right: 60px;
+        top: -8px;
+        width: 70px;
+        height: 70px;
+        background-size: 100%;
+        &:hover {
+          cursor: pointer;
+        }
+      }
+    }
+    .armor {
+      background-color: #4873b2;
+      border-color: #37005a;
+    }
+    .strength {
+      background-color: #c4453b;
+      border-color: #5d0300;
+    }
+    .willpower {
+      background-color: #c5a500;
+      border-color: #602a01;
+    }
+    .exertion {
+      background-color: #458e48;
+      border-color: #004514;
+    }
+    .break {
+      background-color: #313131;
+      border-color: #070708;
+    }
+    .total {
+      margin-left: 425px;
+      width: 175px;
+      border: none;
+    }
+  }
+  .portrait {
+    width: 160px;
+    height: 460px;
+    margin-right: 20px;
+    background-size: 100%;
+  }
+}
+
+.character {
+  width: 150px;
+  height: 180px;
+  float: left;
+  margin-right: 10px;
+  &:hover {
+    cursor: pointer;
+  }
+  .title {
+    font-size: 1.4em;
+    height: 30px;
+    .black-text-outline();
+  }
+  .portrait {
+    height: 150px;
+  }
+  &:first-child {
+    margin-left: 5px;
+  }
+  &:last-child {
+    margin-right: 0px;
+  }
+}
+
+#credits {
+  padding: 20px;
+  #gradient > .vertical(#1d1f32, #494e6a);
+  a {
+    color: orange;
+    text-decoration: none;
+  }
+}
+
+// Characters
+
+// Mixins
+.base-character-portrait (@class) {
+  .character.@{class} {
+    .portrait {
+      background-image: data-uri("../img/characters/base/@{class}.png");
+    }
+  }
+}
+
+.rank-1-character-portrait (@class) {
+  .character.@{class} {
+    .portrait {
+      background-image: data-uri("../img/characters/rank1/@{class}.png");
+    }
+  }
+}
+
+// Large Portraits for Stat Editor
+.rank-1-stat-editor-portrait (@class) {
+  #stat-editor .portrait.@{class} {
+    background-image: data-uri("../img/characters/portraits/@{class}.png");
+  }
+}
+
+.stat-icon (@stat) {
+  #stat-editor .@{stat} .icon {
+    background-image: data-uri("../img/icon/@{stat}.png");
+  }
+}
+
+// Basic Character Structure
+
+.character {
+  .title {
+    text-align: center;
+  }
+  .portrait {
+    background-image: data-uri("../img/empty.character.frame.png");
+    background-size: 150px;
+    z-index: 1;
+    position: relative;
+  }
+}
+
+// Icons
+
+.stat-icon(armor);
+.stat-icon(strength);
+.stat-icon(willpower);
+.stat-icon(exertion);
+.stat-icon(break);
+.stat-icon(special);
+
+// Base Character Portraits
+
+.base-character-portrait(raider);
+.base-character-portrait(archer);
+.base-character-portrait(warrior);
+.base-character-portrait(shieldbanger);
+
+// Rank 1 Stat Editor Large Portraits
+
+// Warriors
+.rank-1-stat-editor-portrait(warhawk);
+.rank-1-stat-editor-portrait(warleader);
+.rank-1-stat-editor-portrait(warmaster);
+
+// Archers
+.rank-1-stat-editor-portrait(bowmaster);
+.rank-1-stat-editor-portrait(skystriker);
+.rank-1-stat-editor-portrait(siegearcher);
+
+// Raiders
+.rank-1-stat-editor-portrait(raidmaster);
+.rank-1-stat-editor-portrait(thrasher);
+.rank-1-stat-editor-portrait(backbiter);
+
+// Shieldbangers
+.rank-1-stat-editor-portrait(strongarm);
+.rank-1-stat-editor-portrait(provoker);
+.rank-1-stat-editor-portrait(shieldmaster);
+
+// Rank 1 Character Portraits
+
+// Warriors
+.rank-1-character-portrait(warhawk);
+.rank-1-character-portrait(warleader);
+.rank-1-character-portrait(warmaster);
+
+// Archers
+.rank-1-character-portrait(bowmaster);
+.rank-1-character-portrait(skystriker);
+.rank-1-character-portrait(siegearcher);
+
+// Raiders
+.rank-1-character-portrait(raidmaster);
+.rank-1-character-portrait(thrasher);
+.rank-1-character-portrait(backbiter);
+
+// Shieldbangers
+.rank-1-character-portrait(strongarm);
+.rank-1-character-portrait(provoker);
+.rank-1-character-portrait(shieldmaster);
