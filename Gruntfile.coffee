@@ -6,6 +6,9 @@ module.exports = (grunt) ->
 
     # files that our tasks will use
     files:
+      html:
+        src: "index.html"
+
       less:
         src: ["css/style.less"]
 
@@ -32,6 +35,13 @@ module.exports = (grunt) ->
         dest: "generated/js/app.min.js"
 
     watch:
+      options:
+        livereload: true
+
+      html:
+        files: ["<%= files.html.src %>"]
+        tasks: ["copy"]
+
       js:
         files: ["<%= files.js.src %>"]
         tasks: ["concat"]
@@ -51,7 +61,7 @@ module.exports = (grunt) ->
 
     copy:
       html:
-        src: "index.html"
+        src: "<%= files.html.src %>"
         dest: "generated/index.html"
 
     server:
