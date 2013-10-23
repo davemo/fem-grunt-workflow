@@ -22,9 +22,13 @@ module.exports = (grunt) ->
         ]
 
     watch:
-      app:
+      js:
         files: ["<%= concat.app.src %>"]
         tasks: ["concat"]
+
+      less:
+        files: ["<%= less.dev.src %>"]
+        tasks: ["less:dev"]
 
     less:
       options:
@@ -32,8 +36,8 @@ module.exports = (grunt) ->
         ieCompat: false
 
       dev:
-        files:
-          "generated/css/style.css": "css/style.less"
+        src: "css/style.less"
+        dest: "generated/css/style.css"
 
   # loading local tasks
   grunt.loadTasks "tasks"
