@@ -15,7 +15,8 @@
     "grunt-contrib-copy": "~0.4.1",
     "grunt-contrib-clean": "~0.5.0",
     "grunt-contrib-less": "~0.8.0",
-    "grunt-contrib-uglify": "~0.2.4"
+    "grunt-contrib-uglify": "~0.2.4",
+    "grunt-contrib-coffee": "~0.7.0"
   },
   "devDependencies": {
     "grunt-open": "~0.2.2",
