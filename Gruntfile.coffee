@@ -22,11 +22,12 @@ module.exports = (grunt) ->
 
       js:
         vendor: [
-          "vendor/js/jquery.js"
-          "vendor/js/angular.js"
-          "vendor/js/underscore.js"
-          "vendor/js/base64.js"
-          "vendor/js/extend.js"
+          "bower_modules/jquery/jquery.js"
+          "bower_modules/angular/angular.js"
+          "bower_modules/angular-route/angular-route.js"
+          "bower_modules/underscore/underscore.js"
+          "bower_modules/extend.js/index.js"
+          "bower_modules/base64js/base64.js"
         ]
 
       coffee:
