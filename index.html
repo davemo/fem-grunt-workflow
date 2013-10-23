@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>The Banner Saga: Factions | Battle Planner</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css" media="all" />
+    <link href='http://fonts.googleapis.com/css?family=Skranji' rel='stylesheet' type='text/css'>
+
+    <!-- Vendor Dependencies -->
+    <script src="vendor/js/jquery.js"></script>
+    <script src="vendor/js/angular.js"></script>
+    <script src="vendor/js/underscore.js"></script>
+    <script src="vendor/js/base64.js"></script>
+    <script src="vendor/js/extend.js"></script>
+
+    <!-- App Dependencies -->
+    <script src="js/config/extend_ext.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/data/unit_data_translator.js"></script>
+    <script src="js/data/unit_data.js"></script>
+    <script src="js/directives/disable_context_menu.js"></script>
+    <script src="js/directives/show_if_unit_has_stats_when_hovered.js"></script>
+    <script src="js/controllers/character_selector_controller.js"></script>
+    <script src="js/controllers/loadout_controller.js"></script>
+    <script src="js/controllers/stat_change_controller.js"></script>
+    <script src="js/controllers/stat_editor_controller.js"></script>
+    <script src="js/services/app_state_service.js"></script>
+    <script src="js/services/unit_service.js"></script>
+    <script src="js/router.js"></script>
+
+  </head>
+  <body ng-app="tbs.BattlePlannerNG">
+
+    <div id="header">
+      <div class="wrapper">
+        <h1>The Banner Saga : Factions | Battle Planner</h1>
+      </div>
+    </div>
+
+    <div id="loadout" ng-controller="Loadout" ng-cloak>
+      <div class="wrapper">
+        <ul id="selected-characters">
+          <li ng-repeat="unit in units" class="character {{ unit.name }}" ng-click="edit(unit)">
+            <div class="title">{{ unit.name }}</div>
+            <div class="portrait">
+              <span class="help-text" ng-hide="isChosen($index)">Click a unit below</span>
+            </div>
+            <span class="remove" show-if-unit-has-stats-when-parent-is-hovered ng-click="clearUnit(unit)">&times;</span>
+            <ul class="stats-overlay">
+              <li class="armor">{{ statsOrEmpty(unit, "armor") }}</li>
+              <li class="strength">{{ statsOrEmpty(unit, "strength") }}</li>
+              <li class="willpower">{{ statsOrEmpty(unit, "willpower") }}</li>
+              <li class="exertion">{{ statsOrEmpty(unit, "exertion") }}</li>
+              <li class="break">{{ statsOrEmpty(unit, "break") }}</li>
+            </ul>
+            <span class="move-left" show-if-unit-has-stats-when-parent-is-hovered position="0" ng-click="moveUnit(unit, $index, -1, $event)"></span>
+            <span class="move-right" show-if-unit-has-stats-when-parent-is-hovered position="5" ng-click="moveUnit(unit, $index, 1, $event)"></span>
+            <div class="allocated-max-stats">
+              <span class="allocated">{{ unit.allocated_stat_points }}</span>/<span class="max">{{ unit.max_stat_points }}</span>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div id="character-selector" ng-controller="CharacterSelector" ng-cloak ng-hide="editing">
+      <div class="wrapper">
+        <div id="unit-groupings">
+          <div class="unit-type" ng-repeat="(type, group) in unitGroupings">
+            <div class="title">{{ type }}</div>
+            <ul class="classes">
+              <li class="character {{ unit.name }}" ng-repeat="unit in group" ng-click="assignUnitToNextAvailableLoadoutSlot(unit)">
+                <div class="title">{{ unit.name }}</div>
+                <div class="portrait"></div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="stat-editor" ng-controller="StatEditor" ng-cloak ng-show="editing">
+      <div class="wrapper">
+        <div class="title-and-controls">
+          <div class="title">{{ unit.name }} - (rank <span class="rank">{{ unit.rank }}</span>)</div>
+          <div class="controls">
+            <span class="done" ng-click="doneEditing()">Done Editing</span>
+            <span class="reset">Reset to Minimums</span>
+            <span class="total">
+              <span class="allocated">{{ unit.allocated_stat_points }}</span>/<span class="max">{{ unit.max_stat_points }}</span>
+            </span>
+            <span id="rank-changer" class="rank{{ unit.rank }}">
+              <span class="ui-title">Rank</span>
+              <span class="set-rank-1 change-rank">1</span><span class="set-rank-2 change-rank">2</span><span class="set-rank-3 change-rank">3</span>
+            </span>
+          </div>
+        </div>
+
+        <div class="portrait {{ unit.name }}"></div>
+
+        <ul class="stats">
+          <li class="{{ stat.name }}" ng-repeat="stat in unit.stats" ng-controller="StatChange">
+            <span class="current">{{ stat.current }}</span>/<span class="max">{{ stat.max }}</span>
+            <span class="icon" disable-context-menu ng-mousedown="increaseOrDecrease(unit, stat, $event)"></span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div id="credits">
+      <div class="wrapper">
+        built by <a href="http://www.twitter.com/@dmosher">@dmosher</a>
+        <span class="build">
+          Calculator Release <span class="version">1.75</span> based on <a href="http://stoicstudio.com/forum/the-banner-saga-factions.php">The Banner Saga: Factions</a> build <span class="version">2.20</span>
+        </span>
+      </div>
+    </div>
+
+  </body>
+</html>
