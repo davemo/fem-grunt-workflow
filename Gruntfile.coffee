@@ -21,11 +21,17 @@ module.exports = (grunt) ->
           "js/**/*.js"
         ]
 
+    watch:
+      app:
+        files: ["<%= concat.app.src %>"]
+        tasks: ["concat"]
+
   # loading local tasks
   grunt.loadTasks "tasks"
 
   # loading external tasks (aka: plugins)
   grunt.loadNpmTasks "grunt-contrib-concat"
+  grunt.loadNpmTasks "grunt-contrib-watch"
 
   # creating workflows
-  grunt.registerTask "default", ["concat"]
+  grunt.registerTask "default", ["concat", "watch"]
