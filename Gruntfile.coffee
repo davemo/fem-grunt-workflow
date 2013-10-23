@@ -21,12 +21,15 @@ module.exports = (grunt) ->
         src: ["css/style.less"]
 
       js:
-        src: [
+        vendor: [
           "vendor/js/jquery.js"
           "vendor/js/angular.js"
           "vendor/js/underscore.js"
           "vendor/js/base64.js"
           "vendor/js/extend.js"
+        ]
+
+        src: [
           "js/config/**/*.js"
           "js/app.js"
           "js/data/**/*.js"
@@ -36,10 +39,9 @@ module.exports = (grunt) ->
           "js/**/*.js"
         ]
 
-    # task configuration
     concat:
       js:
-        src: "<%= files.js.src %>"
+        src: ["<%= files.js.vendor %>", "<%= files.js.src %>"]
         dest: "generated/js/app.min.js"
 
     watch:
@@ -52,7 +54,7 @@ module.exports = (grunt) ->
         tasks: ["copy"]
 
       js:
-        files: ["<%= files.js.src %>"]
+        files: ["<%= files.js.vendor %>", "<%= files.js.src %>"]
         tasks: ["concat"]
 
       less:
