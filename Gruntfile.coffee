@@ -28,7 +28,7 @@ module.exports = (grunt) ->
           "js/**/*.js"
         ]
 
-    # task configuration targets
+    # task configuration
     concat:
       js:
         src: "<%= files.js.src %>"
@@ -38,6 +38,7 @@ module.exports = (grunt) ->
       options:
         livereload: true
 
+      # targets for watch
       html:
         files: ["<%= files.html.src %>"]
         tasks: ["copy"]
@@ -59,10 +60,18 @@ module.exports = (grunt) ->
         src: "<%= files.less.src %>"
         dest: "generated/css/style.css"
 
+      dist:
+        options:
+          cleancss: true
+          compress: true
+        src: "<%= files.less.src %>"
+        dest: "dist/css/style.css"
+
     copy:
       html:
-        src: "<%= files.html.src %>"
-        dest: "generated/index.html"
+        files:
+          "generated/index.html" : "<%= files.html.src %>"
+          "dist/index.html"      : "<%= files.html.src %>"
 
     server:
       base: "generated"
@@ -83,4 +92,5 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks "grunt-contrib-clean"
 
   # creating workflows
-  grunt.registerTask "default", ["less", "concat", "copy", "server", "watch"]
+  grunt.registerTask "default", ["less:dev", "concat", "copy", "server", "watch"]
+  grunt.registerTask "build", ["less:dist", "concat", "copy"]
