@@ -18,7 +18,8 @@
     "grunt-contrib-uglify": "~0.2.4",
     "grunt-contrib-coffee": "~0.7.0",
     "grunt-angular-templates": "~0.4.7",
-    "grunt-concat-sourcemap": "~0.3.1"
+    "grunt-concat-sourcemap": "~0.3.1",
+    "grunt-contrib-handlebars": "~0.5.11"
   },
   "devDependencies": {
     "grunt-open": "~0.2.2",

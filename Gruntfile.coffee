@@ -23,27 +23,28 @@ module.exports = (grunt) ->
       js:
         vendor: [
           "bower_modules/jquery/jquery.js"
-          "bower_modules/angular/angular.js"
-          "bower_modules/angular-route/angular-route.js"
           "bower_modules/underscore/underscore.js"
+          "bower_modules/underscore.string/lib/underscore.string.js"
           "bower_modules/extend.js/index.js"
+          "bower_modules/backbone/backbone.js"
+          "bower_modules/backbone-fixins.js/index.js"
+          "bower_modules/backbone.stickit/backbone.stickit.js"
           "bower_modules/base64js/base64.js"
+          "bower_modules/handlebars/handlebars.js"
         ]
 
       coffee:
         dest: "generated/compiled-coffee"
         compiled: [
           "generated/compiled-coffee/config/**/*.js"
-          "generated/compiled-coffee/app.js"
+          "generated/compiled-coffee/converters.js"
           "generated/compiled-coffee/data/**/*.js"
-          "generated/compiled-coffee/directives/**/*.js"
-          "generated/compiled-coffee/controllers/**/*.js"
-          "generated/compiled-coffee/services/**/*.js"
+          "generated/compiled-coffee/models/**/*.js"
           "generated/compiled-coffee/**/*.js"
         ]
 
       templates:
-        src: "app/templates/**/*.html"
+        src: "app/templates/**/*.hb"
         compiled: "generated/template-cache.js"
 
     # task configuration
@@ -61,8 +62,8 @@ module.exports = (grunt) ->
       app:
         src: [
           "<%= files.js.vendor %>"
-          "<%= files.coffee.compiled %>"
           "<%= files.templates.compiled %>"
+          "<%= files.coffee.compiled %>"
         ]
         dest: "generated/js/app.min.js"
 
@@ -102,11 +103,12 @@ module.exports = (grunt) ->
         src: "<%= files.less.src %>"
         dest: "dist/css/style.css"
 
-    ngtemplates:
-      "tbs.BattlePlannerNG":
-        options:
-          base: "app/templates"
-        src:  "<%= files.templates.src %>"
+    handlebars:
+      options:
+        namespace: "JST"
+        wrapped: true
+      compile:
+        src: "<%= files.templates.src %>"
         dest: "<%= files.templates.compiled %>"
 
     copy:
@@ -145,6 +147,6 @@ module.exports = (grunt) ->
   require('matchdep').filterAll('grunt-*').forEach(grunt.loadNpmTasks)
 
   # creating workflows
-  grunt.registerTask "default", ["ngtemplates", "less:dev", "coffee", "concat_sourcemap", "copy", "server", "open", "watch"]
-  grunt.registerTask "build", ["clean", "ngtemplates", "less:dist", "coffee", "concat_sourcemap", "uglify", "copy"]
+  grunt.registerTask "default", ["handlebars", "less:dev", "coffee", "concat_sourcemap", "copy", "server", "open", "watch"]
+  grunt.registerTask "build", ["clean", "handlebars", "less:dist", "coffee", "concat_sourcemap", "uglify", "copy"]
   grunt.registerTask "prodsim", ["build", "server", "open", "watch"]
