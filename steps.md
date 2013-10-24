@@ -68,3 +68,8 @@
 - bower install jquery#1.8.2 --save
 - bower install https://github.com/searls/extend.js/releases/download/0.1.0/extend.js --save
 - bower install base64js --save
+
+## CommonJS, A simple module format
+
+- npm install grunt-browserify --save
+- npm install coffeeify --save
