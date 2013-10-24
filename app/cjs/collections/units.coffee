@@ -1,4 +1,5 @@
-Unit     = require("../models/unit.coffee")
+Unit      = require("../models/unit.coffee")
+UnitStats = require("./unit_stats.coffee")
 
 module.exports = class Units extends Backbone.Collection
   model: Unit
@@ -65,14 +66,14 @@ module.exports = class Units extends Backbone.Collection
     model_data = []
     _(units).each (unit_data) =>
       if unit_data[4].length is 0
-        model_data.push(new unit)
+        model_data.push(new Unit)
       else
         model_data.push(
           name: @UNIT_NAME_ENCODED_TO_FULL[unit_data[0]]
           rank: unit_data[1]
           allocated_stat_points: unit_data[2]
           max_stat_points: unit_data[3]
-          stats: new tbs.collections.UnitStats(
+          stats: new UnitStats(
             _(unit_data[4]).map (stat) =>
               stat: @STAT_NAME_ENCODED_TO_FULL[stat[0]]
               current: stat[1]
