@@ -35,7 +35,7 @@ module.exports = (grunt) ->
 
         app:
           main: "app/cjs/bootstrap.coffee"
-          compiled: "generated/app-bundle.js"
+          compiled: "generated/js/app.min.js"
 
       templates:
         src: "app/templates/**/*.hb"
@@ -47,6 +47,7 @@ module.exports = (grunt) ->
         files:
           "<%= files.js.app.compiled %>" : "<%= files.js.app.main %>"
         options:
+          debug: true
           transform: ["coffeeify"]
 
     concat_sourcemap:
@@ -56,9 +57,8 @@ module.exports = (grunt) ->
         src: [
           "<%= files.js.vendor %>"
           "<%= files.templates.compiled %>"
-          "<%= files.js.app.compiled %>"
         ]
-        dest: "generated/js/app.min.js"
+        dest: "generated/js/vendor.min.js"
 
     watch:
       options:
