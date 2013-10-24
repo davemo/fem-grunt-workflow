@@ -80,3 +80,9 @@
 - npm install
 - bower install
 - grunt server
+
+## Lineman
+
+- cd lineman-workflow
+- npm installl
+- lineman
