@@ -33,28 +33,21 @@ module.exports = (grunt) ->
           "bower_modules/handlebars/handlebars.js"
         ]
 
-      coffee:
-        dest: "generated/compiled-coffee"
-        compiled: [
-          "generated/compiled-coffee/config/**/*.js"
-          "generated/compiled-coffee/converters.js"
-          "generated/compiled-coffee/data/**/*.js"
-          "generated/compiled-coffee/models/**/*.js"
-          "generated/compiled-coffee/**/*.js"
-        ]
+        app:
+          main: "app/cjs/bootstrap.coffee"
+          compiled: "generated/app-bundle.js"
 
       templates:
         src: "app/templates/**/*.hb"
         compiled: "generated/template-cache.js"
 
     # task configuration
-    coffee:
-      compile:
-        expand: true
-        cwd: 'app/coffee'
-        src: '**/*.coffee'
-        dest: '<%= files.coffee.dest %>'
-        ext: '.js'
+    browserify:
+      app:
+        files:
+          "<%= files.js.app.compiled %>" : "<%= files.js.app.main %>"
+        options:
+          transform: ["coffeeify"]
 
     concat_sourcemap:
       options:
@@ -63,7 +56,7 @@ module.exports = (grunt) ->
         src: [
           "<%= files.js.vendor %>"
           "<%= files.templates.compiled %>"
-          "<%= files.coffee.compiled %>"
+          "<%= files.js.app.compiled %>"
         ]
         dest: "generated/js/app.min.js"
 
@@ -81,8 +74,8 @@ module.exports = (grunt) ->
         tasks: ["concat_sourcemap"]
 
       coffee:
-        files: ["coffee/**/*.coffee"]
-        tasks: ["coffee", "concat_sourcemap"]
+        files: ["app/cjs/**/*.coffee"]
+        tasks: ["browserify", "concat_sourcemap"]
 
       less:
         files: ["<%= files.less.src %>"]
@@ -147,6 +140,6 @@ module.exports = (grunt) ->
   require('matchdep').filterAll('grunt-*').forEach(grunt.loadNpmTasks)
 
   # creating workflows
-  grunt.registerTask "default", ["handlebars", "less:dev", "coffee", "concat_sourcemap", "copy", "server", "open", "watch"]
-  grunt.registerTask "build", ["clean", "handlebars", "less:dist", "coffee", "concat_sourcemap", "uglify", "copy"]
+  grunt.registerTask "default", ["handlebars", "less:dev", "browserify", "concat_sourcemap", "copy", "server", "open", "watch"]
+  grunt.registerTask "build", ["clean", "handlebars", "less:dist", "browserify", "concat_sourcemap", "uglify", "copy"]
   grunt.registerTask "prodsim", ["build", "server", "open", "watch"]
