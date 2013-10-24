@@ -73,3 +73,10 @@
 
 - npm install grunt-browserify --save
 - npm install coffeeify --save
+
+## Yeoman
+
+- cd yeoman-workflow
+- npm install
+- bower install
+- grunt server
