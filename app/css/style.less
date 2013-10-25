@@ -117,11 +117,11 @@ body {
       z-index: 5;
     }
     .move-left {
-      background-image: data-uri("../img/icon/move-left.png");
+      background-image: data-uri("../../generated/img-min/icon/move-left.png");
       left: -8px;
     }
     .move-right {
-      background-image: data-uri("../img/icon/move-right.png");
+      background-image: data-uri("../../generated/img-min/icon/move-right.png");
       right: -8px;
     }
     .arrow {
@@ -370,7 +370,7 @@ body {
 .base-character-portrait (@class) {
   .character.@{class} {
     .portrait {
-      background-image: data-uri("../img/characters/base/@{class}.png");
+      background-image: data-uri("../../generated/img-min/characters/base/@{class}.png");
     }
   }
 }
@@ -378,7 +378,7 @@ body {
 .rank-1-character-portrait (@class) {
   .character.@{class} {
     .portrait {
-      background-image: data-uri("../img/characters/rank1/@{class}.png");
+      background-image: data-uri("../../generated/img-min/characters/rank1/@{class}.png");
     }
   }
 }
@@ -386,13 +386,13 @@ body {
 // Large Portraits for Stat Editor
 .rank-1-stat-editor-portrait (@class) {
   #stat-editor .portrait.@{class} {
-    background-image: data-uri("../img/characters/portraits/@{class}.png");
+    background-image: data-uri("../../generated/img-min/characters/portraits/@{class}.png");
   }
 }
 
 .stat-icon (@stat) {
   #stat-editor .@{stat} .icon {
-    background-image: data-uri("../img/icon/@{stat}.png");
+    background-image: data-uri("../../generated/img-min/icon/@{stat}.png");
   }
 }
 
@@ -403,7 +403,7 @@ body {
     text-align: center;
   }
   .portrait {
-    background-image: data-uri("../img/empty.character.frame.png");
+    background-image: data-uri("../../generated/img-min/empty.character.frame.png");
     background-size: 150px;
     z-index: 1;
     position: relative;

@@ -81,6 +81,14 @@ module.exports = (grunt) ->
         files: ["<%= files.less.src %>"]
         tasks: ["less:dev"]
 
+    imagemin:
+      dist:
+        files: [
+          expand: true,
+          cwd: 'app/img'
+          src: '**/*.{png,jpg,jpeg}'
+          dest: 'generated/img-min'
+        ]
     less:
       options:
         ieCompat: false
@@ -140,6 +148,6 @@ module.exports = (grunt) ->
   require('matchdep').filterAll('grunt-*').forEach(grunt.loadNpmTasks)
 
   # creating workflows
-  grunt.registerTask "default", ["handlebars", "less:dev", "browserify", "concat_sourcemap", "copy", "server", "open", "watch"]
-  grunt.registerTask "build", ["clean", "handlebars", "less:dist", "browserify", "concat_sourcemap", "uglify", "copy"]
+  grunt.registerTask "default", ["handlebars", "imagemin", "less:dev", "browserify", "concat_sourcemap", "copy", "server", "open", "watch"]
+  grunt.registerTask "build", ["clean", "handlebars", "imagemin", "less:dist", "browserify", "concat_sourcemap", "uglify", "copy"]
   grunt.registerTask "prodsim", ["build", "server", "open", "watch"]

@@ -86,3 +86,7 @@
 - cd lineman-workflow
 - npm installl
 - lineman
+
+## Bonus: Grunt Contrib Imagemin
+
+- npm install grunt-contrib-imagemin --save

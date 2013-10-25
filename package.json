@@ -22,7 +22,8 @@
     "grunt-contrib-handlebars": "~0.5.11",
     "browserify": "~2.34.3",
     "grunt-browserify": "~1.2.9",
-    "coffeeify": "~0.5.2"
+    "coffeeify": "~0.5.2",
+    "grunt-contrib-imagemin": "~0.3.0"
   },
   "devDependencies": {
     "grunt-open": "~0.2.2",
