@@ -89,4 +89,6 @@
 
 ## Bonus: Grunt Contrib Imagemin
 
+- cd grunt-workflow
 - npm install grunt-contrib-imagemin --save
+- grunt imagemin
