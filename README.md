@@ -16,3 +16,19 @@ Pre-requisites:
 7. (optional) [rowanj's fork of GitX for OSX](http://rowanj.github.io/gitx/), is a nice Git GUI client, but totally optional; if you have another Git GUI client feel free to use that. (Windows users, https://code.google.com/p/gitextensions/ looks about equivalent).
 
 Alternatively, if you don't want to work on your own machine and would prefer to use a virtualized environment, you can signup for a free account on Nitrous.io, I tried it out the other day and it should work fine for the things we are going to be working on. This environment will come pre-installed with numbers 1 through 4 in the list above.
+
+## Crawling with `next`, `prev` aliases
+
+Put these aliases in your path for easy crawling :)
+
+```shell
+$ cat ~/bin/next 
+#!/usr/bin/env bash
+git crawl master
+```
+
+```shell
+$ cat ~/bin/prev
+#!/usr/bin/env bash
+git co HEAD^1
+```
