@@ -24,7 +24,7 @@ Put these aliases in your path for easy crawling :)
 ```shell
 $ cat ~/bin/next 
 #!/usr/bin/env bash
-git crawl master
+git crawl pdc
 ```
 
 ```shell
