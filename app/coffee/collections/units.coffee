@@ -56,10 +56,10 @@ def 'tbs.collections.Units', class Units extends Backbone.Collection
     _(@toJSON()).each (u) =>
       stats = _(u.stats).map (s) => [@STAT_NAME_FULL_TO_ENCODED[s.stat],s.current,s.min,s.max]
       output.push([@UNIT_NAME_FULL_TO_ENCODED[u.name],u.rank,u.allocated_stat_points,u.max_stat_points,stats])
-    base64.encode(JSON.stringify(output))
+    Base64.encode(JSON.stringify(output))
 
   deserialize: (encoded) =>
-    units = JSON.parse(base64.decode(encoded))
+    units = JSON.parse(Base64.decode(encoded))
     model_data = []
     _(units).each (unit_data) =>
       if unit_data[4].length is 0

@@ -16,7 +16,6 @@
     "tests"
   ],
   "dependencies": {
-    "base64js": "~1.0.0",
     "jquery": "~1.8.2",
     "underscore": "~1.4.3",
     "extend.js": "https://github.com/searls/extend.js/releases/download/0.1.0/extend.js",
@@ -24,6 +23,7 @@
     "backbone.stickit": "~0.6.2",
     "backbone": "~0.9.10",
     "underscore.string": "~2.3.0",
-    "handlebars": "~1.0.0"
+    "handlebars": "~1.0.0",
+    "js-base64": "~2.1.5"
   }
 }

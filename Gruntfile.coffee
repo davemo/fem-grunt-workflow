@@ -29,7 +29,7 @@ module.exports = (grunt) ->
           "bower_modules/backbone/backbone.js"
           "bower_modules/backbone-fixins.js/index.js"
           "bower_modules/backbone.stickit/backbone.stickit.js"
-          "bower_modules/base64js/base64.js"
+          "bower_modules/js-base64/base64.js"
           "bower_modules/handlebars/handlebars.js"
         ]
 
